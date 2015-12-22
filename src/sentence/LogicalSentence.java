@@ -1,7 +1,5 @@
 package sentence;
 
-import java.util.ArrayList;
-
 public class LogicalSentence implements LogicalExpression{
 
 	//The sentence
@@ -54,7 +52,7 @@ public class LogicalSentence implements LogicalExpression{
 	 */
 	public void getVariableNames() {
 		//A list of non-variable-characters
-		char[] operators = {'~', '=', '<', '>', '^', 'v', '(', ')'};
+		char[] operators = {'~', '=', '<', '>', '|', '&', '(', ')'};
 		
 		//Where in the list of names the new name should go
 		int positionIndex = 0;
@@ -77,59 +75,6 @@ public class LogicalSentence implements LogicalExpression{
 				positionIndex++;
 			}
 		}
-	}
-
-	
-	String assign(String exp, int tvals){
-		
-		ArrayList<Character> hi = new ArrayList<Character>(); 
-	    String number = Integer.toBinaryString(tvals);
-	    
-	    int number2 = Integer.valueOf(number);
-	    
-	    int length = number.length();
-	    char[] input = new char[length];
-	    char[] vars = new char[length];
-	    
-	    exp.su
-	    //A list of non-variable-characters
-			char[] operators = {'~', '=', '<', '>', '^', 'v', '(', ')'};
-			
-			//Where in the list of names the new name should go
-			int positionIndex = 0;
-			
-			//Search through the expression to look for variables.
-			for(int i = 0; i < exp.length(); i++) {
-				boolean matched = false;
-				
-				//Check if the character is an operator or parentheses
-				for(char character : operators) {
-					if(exp.charAt(i) == character) {
-						matched = true;
-					}
-				}
-
-				//If it is not an operator or parentheses, it is a variable.
-				//We store its name in an array.
-				if(!matched) {
-					vars[positionIndex] = exp.charAt(i);
-					positionIndex++;
-				}
-				
-				//Fills out the input array according to the binary number 
-				for(int k = 0; k < length; k++) {
-					if(number.charAt(k) == '1') {
-						input[k] = 'T';
-					}
-					else input[k] = 'F';
-				}
-
-				//Replaces the variables in the sentence with the input. 
-				//Input is T/F
-				for(int a = 0; a < length; a++) {
-					exp = exp.replace(vars[a], input[a]);
-				}
-			}return exp; 
 	}
 	
 	@Override
